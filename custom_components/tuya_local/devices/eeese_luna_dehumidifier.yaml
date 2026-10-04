@@ -1,0 +1,81 @@
+name: Dehumidifier
+products:
+  - id: 5wc50g3lt3bzbai2
+    manufacturer: Eeese
+    model: Luna
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+      - id: 6
+        name: current_humidity
+        type: integer
+  - entity: select
+    name: Mode
+    icon: "mdi:tune"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: "Auto Mode"
+            value: "Auto Mode"
+          - dps_val: "Sleep Mode"
+            value: "Sleep Mode"
+          - dps_val: DRY_CLOTHE
+            value: DRY_CLOTHE
+          - dps_val: AIR_CLEAN
+            value: AIR_CLEAN
+  - entity: switch
+    name: Swing
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Error code
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
