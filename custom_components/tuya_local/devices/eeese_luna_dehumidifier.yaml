@@ -136,10 +136,48 @@ entities:
           - dps_val: 4
             value: true
           - value: false
-  - entity: sensor
-    name: Error code
+  - entity: binary_sensor
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 19
-        type: integer
+        type: bitfield
         name: sensor
+        optional: true
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - dps_val: 4
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 19
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 4
+            value: Tank full or missing
+          - dps_val: 8
+            value: Defrosting
